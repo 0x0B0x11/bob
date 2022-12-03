@@ -1,0 +1,43 @@
+BASE_GPIO_PATH=/sys/class/gpio
+
+. ./sys.sh
+
+install_led(){
+	echo none > /sys/class/leds/led1/trigger
+	echo none > /sys/class/leds/led0/trigger
+}
+
+uninstall_led(){
+	echo input | sudo tee /sys/class/leds/led1/trigger
+	echo mmc0 | sudo tee /sys/class/leds/led0/trigger
+}
+
+setLed(){
+	echo $1 > /sys/class/leds/led1/brightness
+	echo $2 > /sys/class/leds/led0/brightness
+}
+
+sys_led(){
+exportPin "19"
+exportPin "26"
+install_led
+pred_z=0
+while :
+do
+        read_value
+        sleep 0.12
+        if [ $(cat $BASE_GPIO_PATH/gpio26/value) != $pred_z ]; then
+                if [ $sysled == "255" ]; then
+                        setLed 0 1
+			echo "Горит Зеленый"
+                else 
+                        setLed 1 0      
+			echo "Горит Красный" 
+                fi
+        fi
+	echo $btn
+done
+}
+
+
+

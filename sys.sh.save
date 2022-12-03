@@ -1,0 +1,5 @@
+read_btn_value(){
+        btn=$(cat $BASE_GPIO_PATH/gpio26/value)
+        led=$(cat $BASE_GPIO_PATH/gpio19/value)
+	sysled=$(cat /sys/class/leds/led1/brightness)
+}
