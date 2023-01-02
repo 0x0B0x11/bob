@@ -1,0 +1,7 @@
+# ---------------------------------------------------- Функция вкл/выкл светодиодов ACT и PWD
+# (первый аргумент - номер светодиода (1-PWD, 0-AСT), второй аргумент - вкл/выкл ("ON", "OFF")
+
+function setLightState() {					# функция вкл/выкл светодиодов ACT и PWD
+	BASE_LED_PATH=/sys/class/leds 			# путь к файлам led0 (для ACT) и led1 (для PWD)
+	echo $2 | sudo tee $BASE_LED_PATH/led$1/brightness
+}

@@ -1,0 +1,5 @@
+# Функция выбора режима (два аргумента: 1-й - номер пина; 2-й - режим работы: "in" или "out")
+
+function setDirect() {
+	sudo echo $2 > /sys/class/gpio/gpio$1/direction
+}

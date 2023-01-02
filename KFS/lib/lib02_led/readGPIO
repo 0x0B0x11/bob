@@ -1,0 +1,6 @@
+# Функция чтения из порта GPIO в переменную rG (один аргумент: 1-й - номер пина)
+
+function readGPIO() {
+	BASE_GPIO_PATH=/sys/class/gpio
+	return $(cat $BASE_GPIO_PATH/gpio$1/value)
+}

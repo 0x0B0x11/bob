@@ -1,0 +1,9 @@
+# Функция подключения пина, если он еще не подключен (один аргумент: 1-й - номер пина)
+
+function exportPin() {
+	BASE_GPIO_PATH=/sys/class/gpio
+	if [ ! -e $BASE_GPIO_PATH/gpio$1 ]; then
+		echo "GPIO $1 экспортирован"
+		echo $1 > $BASE_GPIO_PATH/export
+	fi
+}

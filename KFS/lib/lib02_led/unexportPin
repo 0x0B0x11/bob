@@ -1,0 +1,9 @@
+# Функция отключения пина, если он еще подключен (один аргумент: 1-й - номер пина)
+
+function unexportPin() {
+	BASE_GPIO_PATH=/sys/class/gpio
+	if [ -e $BASE_GPIO_PATH/gpio$1 ]; then
+		echo "GPIO $1 unexport"
+		echo "$1" > $BASE_GPIO_PATH/unexport
+	fi
+}
